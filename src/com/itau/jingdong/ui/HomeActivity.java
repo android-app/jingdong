@@ -1,7 +1,6 @@
 package com.itau.jingdong.ui;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -10,9 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.TabHost;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TabHost;
 
 import com.itau.jingdong.AppManager;
 import com.itau.jingdong.R;
@@ -33,14 +31,9 @@ public class HomeActivity extends TabActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		AppManager.getInstance().addActivity(this);
 		setContentView(R.layout.activity_home);
-		
-		
-
-		
 		findViewById();
 		initView();
 	}
@@ -105,14 +98,12 @@ public class HomeActivity extends TabActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
 		getMenuInflater().inflate(R.menu.activity_menu, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.menu_about:
 
@@ -136,7 +127,6 @@ public class HomeActivity extends TabActivity {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
 					AppManager.getInstance().AppExit(getApplicationContext());
 					ImageLoader.getInstance().clearMemoryCache();
 				}
@@ -144,7 +134,6 @@ public class HomeActivity extends TabActivity {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
 					dialog.dismiss();
 				}
 			});

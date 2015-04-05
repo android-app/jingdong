@@ -46,7 +46,6 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		AppManager.getInstance().addActivity(this);
 		if (!ImageLoader.getInstance().isInited()) {
@@ -58,37 +57,31 @@ public abstract class BaseActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onRestart() {
-		// TODO Auto-generated method stub
 		super.onRestart();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
@@ -149,14 +142,15 @@ public abstract class BaseActivity extends Activity {
 	}
 	
 	protected void DisPlay(String content){
-		Toast.makeText(this, content, 1).show();
+		Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
 	}
 
 	/**加载进度条*/
+	@SuppressWarnings("unused")
 	public void showProgressDialog() {
 		ProgressDialog progressDialog = null;
 		
-		if(progressDialog!=null){
+		if(progressDialog != null) {
 			progressDialog.cancel();
 		}
 		progressDialog=new ProgressDialog(this);
@@ -191,12 +185,9 @@ public abstract class BaseActivity extends Activity {
 	}
 
 	
-//獲得設備信息
+	// 获取设备信息
 	protected String getDeviceId() throws Exception {
-		String deviceId=tManager.getDeviceId();
-		
-		return deviceId;
-		
+		return tManager.getDeviceId();
 	}
 	
 	/**
@@ -208,18 +199,17 @@ public abstract class BaseActivity extends Activity {
 		return tManager.getSimSerialNumber();
 	}
 
-	/*獲得系統版本*/
-	
+	/*获得系统版本*/
 	protected String getClientOs() {
 		return android.os.Build.ID;
 	}
 	
-	/*獲得系統版本號*/
+	// 获得系统版本号
 	protected String getClientOsVer() {
 		return android.os.Build.VERSION.RELEASE;
 	}
 	
-	//獲得系統語言包
+	//获得系统语言包
 	protected String getLanguage() {
 		return Locale.getDefault().getLanguage();
 	}

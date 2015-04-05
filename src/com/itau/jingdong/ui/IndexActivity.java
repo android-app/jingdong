@@ -3,6 +3,7 @@ package com.itau.jingdong.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
@@ -40,6 +40,7 @@ import com.itau.jingdong.widgets.jazzviewpager.OutlineContainer;
 import com.itau.jingdong.zxing.CaptureActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+@SuppressLint({ "ClickableViewAccessibility", "InlinedApi" })
 public class IndexActivity extends BaseActivity implements OnClickListener,
 		onSearchBarItemClickListener {
 	public static final String TAG = IndexActivity.class.getSimpleName();
@@ -88,14 +89,12 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
 		mHandler = new Handler(getMainLooper()) {
 
 			@Override
 			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
 				super.handleMessage(msg);
 				switch (msg.what) {
 				case MSG_CHANGE_PHOTO:
@@ -119,7 +118,6 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void findViewById() {
-		// TODO Auto-generated method stub
 		mIndexHour = (TextView) findViewById(R.id.index_miaosha_hour);
 		mIndexMin = (TextView) findViewById(R.id.index_miaosha_min);
 		mIndexSeconds = (TextView) findViewById(R.id.index_miaosha_seconds);
@@ -164,10 +162,6 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 	@Override
 	protected void initView() {
 		
-		
-		
-		
-		// TODO Auto-generated method stub
 		ImageLoader.getInstance().displayImage(
 				"drawable://" + R.drawable.miaosha, mMiaoShaImage);
 
@@ -222,7 +216,6 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
 				if (mImageUrls.size() == 0 || mImageUrls.size() == 1)
 					return true;
 				else
@@ -231,7 +224,6 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 		});
 		
 		// ======= 初始化ViewPager ========
-
 		mStormAdapter = new IndexGalleryAdapter(this,
 				R.layout.activity_index_gallery_item, mStormListData,
 				new int[] { R.id.index_gallery_item_image,
@@ -447,7 +439,6 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.index_camer_button:
 			int height = mTopLayout.getHeight()
@@ -466,7 +457,6 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	public void onBarCodeButtonClick() {
-		// TODO Auto-generated method stub
 //		CommonTools.showShortToast(this, "条码购");
 		mIntent=new Intent(IndexActivity.this, CaptureActivity.class);
 		startActivity(mIntent);
@@ -474,13 +464,11 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	public void onCameraButtonClick() {
-		// TODO Auto-generated method stub
 		CommonTools.showShortToast(this, "拍照购");
 	}
 
 	@Override
 	public void onColorButtonClick() {
-		// TODO Auto-generated method stub
 		CommonTools.showShortToast(this, "颜色购");
 	}
 }

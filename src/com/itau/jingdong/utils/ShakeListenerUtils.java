@@ -1,20 +1,11 @@
 package com.itau.jingdong.utils;
 
-
-
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
 
-/**
- * ���������Ӧ
- * 
- * @author Hasee
- * 
- */
 public class ShakeListenerUtils implements SensorEventListener {
 
 	private Context context;
@@ -58,7 +49,6 @@ public class ShakeListenerUtils implements SensorEventListener {
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

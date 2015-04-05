@@ -23,7 +23,6 @@ public class CategoryActivity extends BaseActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_category);
@@ -49,7 +48,6 @@ public class CategoryActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -57,23 +55,19 @@ public class CategoryActivity extends BaseActivity {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mImageIds.length;
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
-		@SuppressWarnings("null")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
