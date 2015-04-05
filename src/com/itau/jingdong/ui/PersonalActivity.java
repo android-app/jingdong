@@ -2,11 +2,15 @@ package com.itau.jingdong.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.itau.jingdong.R;
 import com.itau.jingdong.ui.base.BaseActivity;
@@ -22,6 +26,10 @@ public class PersonalActivity extends BaseActivity implements OnClickListener {
 	private CustomScrollView mScrollView = null;
 	private Intent mIntent=null;
 	private ExitView exit;
+	private LinearLayout Ly_login,Ly_Other;
+	private RelativeLayout Ly_personalInfo;
+	private TextView username;
+	private int LOGIN_CODE=100;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,12 @@ public class PersonalActivity extends BaseActivity implements OnClickListener {
 		mScrollView = (CustomScrollView) findViewById(R.id.personal_scrollView);
 		mMoreButton=(Button)this.findViewById(R.id.personal_more_button);
 		mExitButton=(Button)this.findViewById(R.id.personal_exit);
+		
+		
+		Ly_login=(LinearLayout)findViewById(R.id.login);
+		Ly_personalInfo=(RelativeLayout)findViewById(R.id.personal);
+		Ly_Other=(LinearLayout)findViewById(R.id.other_layout);
+		username=(TextView)findViewById(R.id.username);
 	}
 
 	@Override
@@ -59,7 +73,8 @@ public class PersonalActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.personal_login_button:
 			mIntent=new Intent(PersonalActivity.this, LoginActivity.class);
-			startActivity(mIntent);
+			
+			startActivityForResult(mIntent, LOGIN_CODE);
 			break;
 
 		case R.id.personal_more_button:
@@ -83,6 +98,26 @@ public class PersonalActivity extends BaseActivity implements OnClickListener {
 		
 	}
 	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		
+		if(resultCode==20){
+//			String name=data.getExtras().getString("username");
+//			Log.i("name", name);
+//			username.setText(name);
+			if(Ly_login.isShown()){
+				Ly_personalInfo.setVisibility(View.VISIBLE);
+				Ly_login.setVisibility(View.GONE);
+				Ly_Other.setVisibility(View.VISIBLE);
+			}
+			Ly_personalInfo.setVisibility(View.VISIBLE);
+			Ly_login.setVisibility(View.GONE);
+			Ly_Other.setVisibility(View.VISIBLE);
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	
 	//为弹出窗口实现监听类
     private OnClickListener  itemsOnClick = new OnClickListener(){

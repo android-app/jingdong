@@ -1,14 +1,19 @@
 package com.itau.jingdong.ui;
 
 
+import java.util.HashMap;
+import java.util.concurrent.Callable;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -16,11 +21,14 @@ import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.itau.jingdong.R;
+import com.itau.jingdong.bean.Constants;
+import com.itau.jingdong.task.Callback;
 import com.itau.jingdong.ui.base.BaseActivity;
 
 public class LoginActivity extends BaseActivity implements OnClickListener {
 	
 private static final String Tag="LoginActivity";
+private LoginActivity loginActivity=null;
 	private ImageView loginLogo,login_more;
 	private EditText loginaccount,loginpassword;
 	private ToggleButton isShowPassword;
@@ -28,12 +36,18 @@ private static final String Tag="LoginActivity";
 	private String getpassword;
 	private Button loginBtn,register;
 	private Intent mIntent;
+	private String serverAddress="http://mdemo.e-cology.cn/login.do";
+	public static String MOBILE_SERVERS_URL="http://mserver.e-cology.cn/servers.do";
+	 String username;
+	 String password;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		loginActivity=LoginActivity.this;
 		findViewById();
 		initView();
 	}
@@ -114,6 +128,7 @@ private static final String Tag="LoginActivity";
 		});
 	
 		
+		loginBtn.setOnClickListener(this);
 	
 	}
 
@@ -127,10 +142,126 @@ private static final String Tag="LoginActivity";
 		
 		break;
 
+		
+	case R.id.login:
+		
+//		doLogin();
+		userlogin();
+		
+		break;
+		
 	default:
 		break;
 	}
 		
 	}
+	
+	//之前的方式太繁瑣了
+	private void userlogin() {
+		 username=loginaccount.getText().toString().trim();
+		 password=loginpassword.getText().toString().trim();
+		String serverAdd = serverAddress;
+		
+		if(username.equals("")){
+			DisplayToast("用户名不能为空!");
+		}
+		if(password.equals("")){
+			DisplayToast("密码不能为空!");
+		}
+		
+		if(username.equals("test")&&password.equals("123")){
+			DisplayToast("登錄成功!");
+			Intent data=new Intent();  
+            data.putExtra("name", username);  
+//            data.putExtra("values", 100);  
+            //请求代码可以自己设置，这里设置成20  
+            setResult(20, data); 
+			
+			LoginActivity.this.finish();
+		}
+		
+//		new LoginTask().execute(username, password);
+		
+	}
 
+	//登录系统
+	private void doLogin(){
+		
+		final String uaername=loginaccount.getText().toString().trim();
+		final String password=loginpassword.getText().toString().trim();
+		String serverAdd = serverAddress;
+		
+		if(uaername.equals("")){
+			DisplayToast("用户名不能为空!");
+		}
+		if(password.equals("")){
+			DisplayToast("密码不能为空!");
+		}
+		
+		loginActivity.doAsync(new Callable<Boolean>() {
+
+			@Override
+			public Boolean call() throws Exception {
+
+				String clientVersion = getVersionName();
+				String deviceid = getDeviceId();
+				String token = getToken();
+				String clientOs = getClientOs();
+				String clientOsVer = getClientOsVer();
+				String language = getLanguage();
+				String country = getCountry();
+				
+				Constants.clientVersion = clientVersion;
+				Constants.deviceid = deviceid;
+				Constants.token = token;
+				Constants.clientOs = clientOs;
+				Constants.clientOsVer = clientOsVer;
+				Constants.language = language;
+				Constants.country = country;
+				Constants.user = uaername;
+				Constants.pass = password;
+
+				return true;
+			}
+			
+		}, new Callback<Boolean>() {
+
+			@Override
+			public void onCallback(Boolean pCallbackValue) {
+				// TODO Auto-generated method stub
+				
+			}
+		}, new Callback<Exception>() {
+
+			@Override
+			public void onCallback(Exception pCallbackValue) {
+				// TODO Auto-generated method stub
+				
+			}
+		}, true, getResources().getString(R.string.login_loading));
+		
+	}
+
+	class LoginTask extends AsyncTask<String, Void, JSONObject>{
+
+
+		@Override
+		protected JSONObject doInBackground(String... params) {
+			HashMap<String, String> map=new HashMap<String, String>();
+			
+			map.put("name", username);
+			map.put("pass", password);
+			map.put("server", serverAddress);
+			
+			
+			try {
+				return new JSONObject(new String("{a:1,b:2}"));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
+	
 }

@@ -37,6 +37,7 @@ import com.itau.jingdong.widgets.HomeSearchBarPopupWindow.onSearchBarItemClickLi
 import com.itau.jingdong.widgets.jazzviewpager.JazzyViewPager;
 import com.itau.jingdong.widgets.jazzviewpager.JazzyViewPager.TransitionEffect;
 import com.itau.jingdong.widgets.jazzviewpager.OutlineContainer;
+import com.itau.jingdong.zxing.CaptureActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class IndexActivity extends BaseActivity implements OnClickListener,
@@ -82,7 +83,7 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 	private IndexGalleryItemData mItemData = null;
 	private HomeSearchBarPopupWindow mBarPopupWindow = null;
 	private EditText mSearchBox = null;
-	private ImageButton mSearchButton = null;
+	private ImageButton mCamerButton = null;
 	private LinearLayout mTopLayout = null;
 
 	@Override
@@ -133,7 +134,7 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 		mPromotionGallery = (Gallery) findViewById(R.id.index_tehui_gallery);
 
 		mSearchBox = (EditText) findViewById(R.id.index_search_edit);
-		mSearchButton = (ImageButton) findViewById(R.id.index_search_button);
+		mCamerButton = (ImageButton) findViewById(R.id.index_camer_button);
 		mTopLayout = (LinearLayout) findViewById(R.id.index_top_layout);
 		
 		shake=(ImageButton)findViewById(R.id.index_shake);
@@ -252,7 +253,7 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		mBarPopupWindow.setOnSearchBarItemClickListener(this);
 
-		mSearchButton.setOnClickListener(this);
+		mCamerButton.setOnClickListener(this);
 		mSearchBox.setOnClickListener(this);
 
 		mSearchBox.setInputType(InputType.TYPE_NULL);
@@ -448,7 +449,7 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.index_search_button:
+		case R.id.index_camer_button:
 			int height = mTopLayout.getHeight()
 					+ CommonTools.getStatusBarHeight(this);
 			mBarPopupWindow.showAtLocation(mTopLayout, Gravity.TOP, 0, height);
@@ -466,7 +467,9 @@ public class IndexActivity extends BaseActivity implements OnClickListener,
 	@Override
 	public void onBarCodeButtonClick() {
 		// TODO Auto-generated method stub
-		CommonTools.showShortToast(this, "条码购");
+//		CommonTools.showShortToast(this, "条码购");
+		mIntent=new Intent(IndexActivity.this, CaptureActivity.class);
+		startActivity(mIntent);
 	}
 
 	@Override

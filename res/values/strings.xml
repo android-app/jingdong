@@ -45,7 +45,10 @@
 
 <!-- 商品分类 -->
 <string name="category">全部分类</string>
-
+<!-- 二维码 -->
+<string name="scan_tip">请将二维码置于取景框内扫描</string>
+<string name="scan_retry">二维码扫描出错啦,请重新扫描</string>
+    <string name="scan_title">扫一扫</string>
     <!-- 个人中心 -->
     <string name="personal_title">我的京东</string>
     <string name="personal_more">更多</string>
@@ -82,6 +85,9 @@
     <string name="find_password">找回密码</string>
     <string name="usecooperationaccount">用合作网站帐户登录</string>
     <string name="registerfree">免费注册</string>
+    <string name="login_loading">正在登錄，請稍候。。</string>
+    
+    
 <!--  购物车 -->
     <string name="cart">购物车</string>
     <string name="cartinfo_no">您的购物车是空的，快去选购吧！</string>

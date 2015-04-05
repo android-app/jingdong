@@ -54,16 +54,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
+           
             <LinearLayout
+                
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:orientation="vertical" >
-
+                android:orientation="vertical"
+                
+                 >
+<!--  登录前 -->
                 <LinearLayout
+                    android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                     >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -87,14 +94,159 @@
                         android:textSize="@dimen/small_text_size"
                         android:textStyle="bold" />
                 </LinearLayout>
+<!-- 登录后 -->
+     <RelativeLayout
+        android:id="@+id/personal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dip"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        
+         >
 
+        <LinearLayout
+            android:id="@+id/avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/main_avatar_bg" >
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/main_persionIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/avatar"
+            android:layout_alignLeft="@+id/avatar"
+            android:layout_alignRight="@+id/avatar"
+            android:layout_alignTop="@+id/avatar"
+            android:layout_margin="11dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/nohead" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/avatar"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:layout_toRightOf="@+id/avatar" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dip"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="xiangzhihong8"
+                    android:textColor="@color/white"
+                     />
+
+                <TextView
+                    android:id="@+id/jobtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="金牌用户"
+                    android:textColor="#FFF8E8" />
+
+                <TextView
+                    android:id="@+id/dept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="积分   100"
+                    android:textColor="#FFF8E8" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+               
+               
+               
+                
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/android_layout_bg"
                     android:orientation="vertical" >
 
+    <!--  登錄成功後顯示 -->
+               
+               <LinearLayout
+            android:id="@+id/other_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:background="@drawable/main_navigation_background"
+            android:paddingTop="5dp" 
+            android:visibility="gone" 
+            >
+
+
+
+ <TextView
+                android:id="@+id/paint_writing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                
+                android:gravity="center"
+                android:text="优惠券\n 0"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+ 
+ 
+
+
+            <TextView
+                android:id="@+id/paint_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="礼品卡\n 0"
+               android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/paint_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="京东豆\n 0"
+                 android:textColor="@color/white"
+                android:textStyle="bold" />
+            
+            
+            
+            
+
+             <TextView
+                android:id="@+id/paint_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                 android:text="余额\n 100"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+                    
+                    
+                    
                     <TextView
+                        
                         style="@style/PersonalCenterText"
                         android:text="@string/personal_order_center" />
 

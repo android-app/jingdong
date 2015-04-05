@@ -1,6 +1,7 @@
 package com.itau.jingdong.ui;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -35,6 +37,10 @@ public class HomeActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		AppManager.getInstance().addActivity(this);
 		setContentView(R.layout.activity_home);
+		
+		
+
+		
 		findViewById();
 		initView();
 	}
@@ -126,7 +132,7 @@ public class HomeActivity extends TabActivity {
 
 		case R.id.menu_exit:
 
-			showAlertDialog("退出程序", "确定退出高仿京东商城？", "确定", new OnClickListener() {
+			showAlertDialog("退出程序", "确定退出京东商城？", "确定", new OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
